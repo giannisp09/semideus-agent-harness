@@ -1,0 +1,7 @@
+provider:
+  name: vllm_local
+  model: meta-llama/Llama-3.1-8B-Instruct
+  api_key_env: VLLM_API_KEY
+  base_url: http://localhost:8000/v1
+  max_tokens: 4096
+  temperature: 0.0

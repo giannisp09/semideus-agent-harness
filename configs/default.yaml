@@ -1,0 +1,64 @@
+provider:
+  name: anthropic
+  model: claude-sonnet-4-20250514
+  api_key_env: ANTHROPIC_API_KEY
+  max_tokens: 8192
+  temperature: 0.0
+
+agent:
+  max_steps: 50
+  max_tokens_per_step: 8192
+  system_prompt: >
+    You are a helpful AI agent with access to tools.
+    Use the tools available to you to accomplish the user's task.
+    Think step by step and use tools when needed.
+
+tools:
+  enabled:
+    - filesystem
+    - shell
+    - git
+    - web
+    - subagent
+  sandbox: true
+
+memory:
+  backend: file
+  path: .semideus/memory
+
+skills:
+  dir: skills
+  enabled: []  # empty = all available skills
+  auto_select: true
+  chains:
+    debug_fix_report:
+      - debug
+      - fix
+      - summarize
+
+guardrails:
+  enabled: true
+  rules:
+    - safety
+    - boundaries
+
+evolution:
+  enabled: false
+  strategy: default
+  sandbox: worktree
+  max_iterations: 10
+
+training:
+  enabled: false
+  collector: event
+  dataset_format: sft
+  output_dir: .semideus/training
+
+evaluation:
+  enabled: false
+  suites_dir: configs/eval
+  output_dir: .semideus/eval_results
+  parallel: false
+  benchmarks: []
+
+plugins_dir: plugins

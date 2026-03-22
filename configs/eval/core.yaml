@@ -1,0 +1,33 @@
+name: core
+description: Core evaluation suite — basic task completion and skill adherence tests.
+
+test_cases:
+  - name: simple_greeting
+    task: "Say hello and introduce yourself briefly."
+    expected_patterns:
+      - "(?i)hello|hi|hey"
+      - "(?i)agent|assistant|AI"
+    max_steps: 5
+    timeout_seconds: 60
+
+  - name: file_listing
+    task: "List the files in the current directory."
+    expected_patterns:
+      - "(?i)file|directory|folder|\\."
+    max_steps: 10
+    timeout_seconds: 60
+
+  - name: arithmetic_reasoning
+    task: "What is 17 * 23? Show your work."
+    expected_patterns:
+      - "391"
+    max_steps: 5
+    timeout_seconds: 60
+
+skill_test_cases:
+  - name: debug_activation
+    task: "/debug There is a bug in the code where the loop counter starts at 1 instead of 0."
+    skill_name: debug
+    expected_tools: []
+    expected_output_patterns:
+      - "(?i)bug|issue|error|fix|loop"

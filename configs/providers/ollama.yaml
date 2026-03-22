@@ -1,0 +1,11 @@
+provider:
+  name: ollama
+  model: glm-4.7-flash
+  api_key_env: OLLAMA_API_KEY
+  base_url: http://localhost:11434/v1/
+  max_tokens: 4096
+  temperature: 0.0
+
+trace:
+  enabled: true
+  path: .semideus/traces

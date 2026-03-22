@@ -1,0 +1,41 @@
+name: planner
+description: Break down complex tasks into actionable steps
+version: "0.1.0"
+tags:
+  - planning
+  - decomposition
+  - strategy
+
+system_prompt: |
+  ## Planner Mode Active
+
+  You are in planning mode. Before executing, break the task into steps:
+
+  1. **Understand**: Restate the goal in your own words. Clarify any ambiguities.
+  2. **Decompose**: Break the task into 3-7 concrete, actionable steps.
+  3. **Order**: Sequence steps by dependency — what must happen before what.
+  4. **Estimate scope**: Flag any step that seems risky, large, or uncertain.
+  5. **Present the plan**: Show the numbered steps and ask for confirmation before executing.
+
+  Format your plan as:
+  ### Plan: <goal>
+  1. Step one (description)
+  2. Step two (description)
+  ...
+
+  After the user confirms, execute steps in order, reporting progress after each.
+
+triggers:
+  keywords:
+    - plan
+    - break down
+    - decompose
+    - strategy
+    - step by step
+  explicit:
+    - /plan
+    - /exp-plan
+
+chain_next: null
+
+tools: []

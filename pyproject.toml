@@ -1,0 +1,37 @@
+[project]
+name = "semideus-agentic-harness"
+version = "0.1.0"
+description = "A modular, self-evolving agentic harness for LLM-powered agents"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "pydantic>=2.0",
+    "pyyaml>=6.0",
+    "typer>=0.12",
+    "rich>=13.0",
+    "anyio>=4.0",
+    "httpx>=0.27",
+    "anthropic>=0.40",
+    "openai>=1.50",
+]
+
+[project.optional-dependencies]
+vector = ["chromadb>=0.5"]
+training = ["datasets>=2.0", "transformers>=4.40"]
+mcp = ["mcp>=1.0"]
+docker = ["docker>=7.0"]
+eval = ["datasets>=2.0"]
+all = ["semideus-agentic-harness[vector,training,mcp,docker,eval]"]
+
+[project.scripts]
+semideus = "semideus.cli:app"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/semideus"]
+
+[tool.uv]
+package = true
